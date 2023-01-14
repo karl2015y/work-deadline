@@ -3,6 +3,16 @@
     class="p-10 flex flex-col gap-10"
     v-if="isFinished"
   >
+    <div class="flex items-center gap-5">
+      <q-img
+        :src="logoImg"
+        class="w-[70px]"
+      ></q-img>
+      <div class="pt-5">
+        <h1 class="text-xl font-bold">花米助手</h1>
+        <h2 class="text-xs">小朋友才上班</h2>
+      </div>
+    </div>
     <div class="flex gap-5 flex-nowrap flex-col sm:flex-row">
       <q-input
         filled
@@ -11,23 +21,40 @@
         mask="date"
         class="w-full sm:w-1/2"
       >
-    
-      <template v-slot:append>
-        <q-icon name="event" class="cursor-pointer">
-          <q-popup-proxy :breakpoint="600" cover transition-show="scale" transition-hide="scale">
-            <q-date v-model="startDate" :events="isHoliday"  :event-color="(date) => isHoliday(date) ? 'red' : ''">
-              <div class="row items-center justify-end">
-                <q-btn v-close-popup label="Close" color="primary" flat />
-              </div>
-            </q-date>
-          </q-popup-proxy>
-        </q-icon>
-      </template>
-    
-    
-    
-    
-    </q-input>
+
+        <template v-slot:append>
+          <q-icon
+            name="event"
+            class="cursor-pointer"
+          >
+            <q-popup-proxy
+              :breakpoint="600"
+              cover
+              transition-show="scale"
+              transition-hide="scale"
+            >
+              <q-date
+                v-model="startDate"
+                :events="isHoliday"
+                :event-color="(date) => isHoliday(date) ? 'red' : ''"
+              >
+                <div class="row items-center justify-end">
+                  <q-btn
+                    v-close-popup
+                    label="Close"
+                    color="primary"
+                    flat
+                  />
+                </div>
+              </q-date>
+            </q-popup-proxy>
+          </q-icon>
+        </template>
+
+
+
+
+      </q-input>
       <div class="w-full sm:w-1/2">
         <q-input
           filled
@@ -83,6 +110,7 @@ import { computed, ref } from 'vue';
 import dayjs from 'dayjs';
 import { useAxios } from '@vueuse/integrations/useAxios';
 import { find } from 'lodash-es';
+import logoImg from '../assets/logo.jpeg'
 
 const weekCht = ['日', '一', '二', '三', '四', '五', '六'] as const
 interface DateNote {
@@ -102,7 +130,7 @@ const endDate = computed(() => {
   return dayjs(startDate.value).add(_gapDays, 'days').format('YYYY/MM/DD')
 })
 
-const nextWorkDate = computed(()=>getNextWorkDate(endDate.value))
+const nextWorkDate = computed(() => getNextWorkDate(endDate.value))
 
 
 
