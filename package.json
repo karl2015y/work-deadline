@@ -5,6 +5,7 @@
     "dev": "vite --host",
     "build": "vue-tsc --noEmit --skipLibCheck && vite build",
     "preview": "vite preview",
+    "deploy": "firebase deploy",
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest run --coverage"
