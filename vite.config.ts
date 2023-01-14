@@ -14,6 +14,7 @@ import { fileURLToPath } from 'url';
 import Unocss from 'unocss/vite';
 
 // https://vitejs.dev/config/
+
 export default defineConfig(({ command, mode }) => {
   const isBuild = command === 'build';
 
@@ -27,6 +28,7 @@ export default defineConfig(({ command, mode }) => {
   ] : undefined;
 
   return {
+    base: './work-deadline/dist/',
     plugins: [
       vue({
         template: { transformAssetUrls }
