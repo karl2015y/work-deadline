@@ -28,7 +28,7 @@ export default defineConfig(({ command, mode }) => {
   ] : undefined;
 
   return {
-    base: './work-deadline/dist/',
+    base: './',
     plugins: [
       vue({
         template: { transformAssetUrls }
