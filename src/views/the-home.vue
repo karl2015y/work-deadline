@@ -99,12 +99,28 @@
         v-else
         class="w-full sm:w-1/2"
       >
-        <q-input
-          filled
-          v-model.number="gapDays"
-          type="number"
-          label="間隔天數"
-        />
+        <div class="flex gap-2 items-center flex-nowrap">
+          <q-input
+            class="w-full"
+            filled
+            v-model.number="gapDays"
+            type="tel"
+            label="間隔天數"
+          />
+          <div class="flex flex-nowrap gap-1">
+            <q-btn
+              unelevated
+              class="bg-gray-200"
+              icon="add"
+            />
+            <q-btn
+              unelevated
+              class="bg-gray-200"
+              icon="remove"
+            />
+          </div>
+        </div>
+
         <div class="flex justify-between mt-1">
           <div>
             <q-toggle
