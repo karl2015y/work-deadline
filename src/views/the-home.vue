@@ -130,6 +130,7 @@
             />
             <br>
             <q-toggle
+              :disable="!(gapDayType === GapDayType.DAY)"
               class="mt-0.5"
               dense
               v-model="needEndDateIsWorkDate"
