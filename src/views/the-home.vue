@@ -109,11 +109,13 @@
           />
           <div class="flex flex-nowrap gap-1">
             <q-btn
+              @click="gapDays++"
               unelevated
               class="bg-gray-200"
               icon="add"
             />
             <q-btn
+              @click="gapDays--"
               unelevated
               class="bg-gray-200"
               icon="remove"
@@ -303,7 +305,6 @@ const dateList = computed(() => {
   while (workDays < gapDays.value) {
     days++
     workDays = getDateListFromDays(startDate.value, days, needFirstDate.value).filter(item => !isHoliday(item.西元日期)).length
-    console.log("🚀 ~ file: the-home.vue:256 ~ dateList ~ workDays:", workDays)
   }
 
   return getDateListFromDays(startDate.value, days, needFirstDate.value)
