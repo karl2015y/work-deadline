@@ -170,6 +170,7 @@
       <ul>
         <li
           v-for="dateNote in dateList"
+          :key="dateNote.西元日期"
           :class="{
             'text-red-500': isHoliday(dateNote.西元日期),
           }"
@@ -187,7 +188,10 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script
+  setup
+  lang="ts"
+>
 import { computed, ref, watch } from 'vue';
 import dayjs from 'dayjs';
 import { useAxios } from '@vueuse/integrations/useAxios';
@@ -203,10 +207,11 @@ interface DateNote {
 }
 const { data: dateNote2023List, isFinished: is2023ListFinished } = useAxios<DateNote[]>('/api/taiwan_2023.json')
 const { data: dateNote2024List, isFinished: is2024ListFinished } = useAxios<DateNote[]>('/api/taiwan_2024.json')
-const isFinished = computed(() => is2023ListFinished.value && is2024ListFinished.value)
+const { data: dateNote2025List, isFinished: is2025ListFinished } = useAxios<DateNote[]>('/api/taiwan_2025.json')
+const isFinished = computed(() => is2023ListFinished.value && is2024ListFinished.value && is2025ListFinished.value)
 const dateNoteList = computed(() => {
-  if (!isFinished.value || !dateNote2023List.value || !dateNote2024List.value) return;
-  return [...dateNote2023List.value, ...dateNote2024List.value].map(item => ({
+  if (!isFinished.value || !dateNote2023List.value || !dateNote2024List.value || !dateNote2025List.value) return;
+  return [...dateNote2023List.value, ...dateNote2024List.value, ...dateNote2025List.value].map(item => ({
     "西元日期": item.西元日期.toString(),
     "星期": item.星期.toString(),
     "是否放假": item.是否放假.toString(),
@@ -318,5 +323,8 @@ function formatDateWithWeekday(date: string | number) {
 
 </script>
 
-<style scoped lang="sass">
+<style
+  scoped
+  lang="sass"
+>
 </style>

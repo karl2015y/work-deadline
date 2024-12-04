@@ -86,6 +86,7 @@
         <ul>
           <li
             v-for="dateNote in getDateList(endDate, nextWorkDate)"
+            :key="dateNote.西元日期"
             :class="{
               'text-red-500': isHoliday(dateNote.西元日期),
             }"
